@@ -1,0 +1,23 @@
+{
+  "name": "werkstuk_dev5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CedricBouche/Werkstuk_DEV5.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CedricBouche/Werkstuk_DEV5/issues"
+  },
+  "homepage": "https://github.com/CedricBouche/Werkstuk_DEV5#readme",
+  "dependencies": {
+    "node": "^17.0.1"
+  }
+}
