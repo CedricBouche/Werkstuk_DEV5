@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "jest --watchAll",
+    "test": "jest --watchAll"
   },
   "repository": {
     "type": "git",
@@ -18,11 +18,9 @@
   },
   "homepage": "https://github.com/CedricBouche/Werkstuk_DEV5#readme",
   "dependencies": {
-
     "express": "^4.17.1",
     "jest": "^27.3.1",
     "node": "^17.0.1",
     "nodemon": "^2.0.14"
-
   }
 }
