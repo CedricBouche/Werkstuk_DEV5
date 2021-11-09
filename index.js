@@ -1,19 +1,22 @@
-/**
- * Get the API
- * 
- * @param url - get the endpoint of the API
- * @returns a JSON file
- */
+const express = require("express");
+const PORT = 3000;
+const server = express();
 
-const api_url =
-	"https://www.scorebat.com/video-api/v3/";
 
-async function getapi(url) {
-	
-	const response = await fetch(url);
-	
-	var data = await response.json();
-	console.log(data);
-}
 
-getapi(api_url);
+server.get("/footbal/movie", function(req,res){
+  res.send("Hello");
+});
+
+server.put("/", function(req,res){
+  res.send("Hello");
+});
+
+server.delete("/", function(req,res){
+  res.send("Hello");
+});
+
+server.listen(PORT,() =>{
+  console.log(`server is listening on port ${PORT}`);
+})
+

@@ -1,8 +1,10 @@
 FROM node:16
 
-WORKDIR /usr/app
+RUN mkdir -p /app/src
 
-COPY package*.json .
+WORKDIR /app/src
+
+COPY package.json .
 
 RUN npm install
 
