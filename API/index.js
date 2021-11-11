@@ -12,6 +12,10 @@ server.get("/", function(req,res){
   res.send("Hello");
 });
 
+server.delete("/",function(req,res){
+  res.send("deleted");
+})
+
 
 
 
