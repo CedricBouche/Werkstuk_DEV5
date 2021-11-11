@@ -12,10 +12,24 @@ server.get("/", function(req,res){
   res.send("Hello");
 });
 
+/**
+ * [DELETE] test endpoint
+ * @returns (string) "deleted" if server is active
+ */
+
 server.delete("/",function(req,res){
   res.send("deleted");
 })
 
+
+/**
+ * [PATCH] test endpoint
+ * @returns (string) "updated" if server is active
+ */
+
+ server.patch("/",function(req,res){
+  res.send("updated");
+})
 
 
 
