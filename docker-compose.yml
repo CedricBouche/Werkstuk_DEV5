@@ -7,13 +7,13 @@ services:
       - ./api/src:/usr/app/src
     environment:
       - PORT
-      - POSTGRES_CONNECTION
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
-      - POSTGRESS_DB
+      - POSTGRES_CONNECTION:
+      - POSTGRES_USER:
+      - POSTGRES_PASSWORD:
+      - POSTGRESS_DB: db
 
     ports:
-    - "80:${PORT}"
+    - "3000:3000"
 
     depends_on:
     - pg
