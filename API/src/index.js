@@ -2,25 +2,6 @@ const express = require("express");
 const port = process.env.PORT | 3000;
 const server = express();
 
-const { createTables} = require("./__tests__/hepler.test");
-
-const knex = require('knex')({
-  client: 'pg',
-  connection: {
-    host : process.env.POSTGRESS_HOST,
-    port : 3306,
-    user : process.env.POSTGRESS_USER,
-    password : process.env.POSTGRES_PASSWORD,
-    database : process.env.POSTGRES_DB
-  }
-});
-
-console.log(host);
-
-const pg = require('knex')({
-});
-
-
 /**
  * [GET] test endpoint
  * @returns (string) "hello world" if server is active

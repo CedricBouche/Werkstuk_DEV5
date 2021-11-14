@@ -6,11 +6,11 @@ services:
     volumes:
       - ./api/src:/usr/app/src
     environment:
-      - PORT
-      - POSTGRES_CONNECTION:
-      - POSTGRES_USER:
-      - POSTGRES_PASSWORD:
-      - POSTGRESS_DB: db
+      - PORT: 3000
+      - POSTGRES_CONNECTION 
+      - POSTGRES_USER: user
+      - POSTGRES_PASSWORD: user
+      - POSTGRESS_DB: werkstuk
 
     ports:
     - "3000:3000"
