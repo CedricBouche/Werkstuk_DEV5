@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  api:
+    build: ./API
+    command: npm run dev
+    volumes:
+      - ./API/src:/usr/api/src
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://todoapp@postgres/todos
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_DB: users
