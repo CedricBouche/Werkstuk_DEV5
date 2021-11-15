@@ -1,10 +1,10 @@
-version: '3.9'
+version: "3.9"
 
 services:
   api:
     build: ./API
     volumes:
-      - ./API/source:/usr/werkstuk/src
+      - ./API/src:/usr/werkstuk/src
 
     environment:
       - PORT
@@ -14,7 +14,7 @@ services:
       - POSTGRES_DB
 
     ports:
-      - 8080:8080
+      - "80:${PORT}"
 
     depends_on:
       - pg
