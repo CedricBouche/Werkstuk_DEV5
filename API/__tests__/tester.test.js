@@ -1,10 +1,19 @@
 const app = require("../src/index");
 const request = require('supertest');
 
-
-
-it('tests if connection to endpoint is good', async() => {
-    const response = await request(app).get('/');
-    expect(response.statusCode).toEqual(200);
-    expect(response.body.status).toBe("success");
+test("GET/", async () => {
+  let response = await request.get("/");
+  expect(response.body.message).toBe('Docker is working! ');
 });
+
+test("DELETE/", async () => {
+  let response = await request.delete("/api/users/:id");
+  expect(response.body.message).toBe('User is deleted based on id');
+});
+
+test("PUT/", async () => {
+  let response = await request.put("/api/users/:id");
+  expect(response.body.message).toBe('User is changed based on id');
+});
+
+
