@@ -1,6 +1,6 @@
 FROM node:16
 
-WORKDIR /usr/src/index.js
+WORKDIR /usr/app
 
 COPY package.json ./
 
@@ -10,5 +10,5 @@ EXPOSE 3000
 
 COPY . .
 
-CMD npm test
+CMD ["npm", "start"]
 
