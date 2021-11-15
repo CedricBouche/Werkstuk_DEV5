@@ -1,20 +1,12 @@
-const {Client} = require('pg');
-
+const { Client } = require('pg')
 const client = new Client({
-  host: "localhost",
-  user: "postgres",
-  port: 5432,
-  password: "admin",
-  database: "postgres"
+  user: 'postgres',
+  host: 'localhost',
+  database: 'postgres',
+  password: 'admin',
+  port: 5433,
 })
-
-client.connect();
-
-client.query(`Select * from users`,(err,res)=>{
-  if(!err){
-    console.log(res.rows);
-  }else{
-    console.log(err.message);
-  }
-  client.end;
-})
+client.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
