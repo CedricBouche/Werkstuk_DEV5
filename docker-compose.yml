@@ -8,10 +8,7 @@ services:
 
     environment:
       - PORT
-      - POSTGRES_CONNECTION
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
-      - POSTGRES_DB
+      - POSTGRES_CONNECTION=postgress://${POSTGRES_USER}:${POSTGRES_PASSWORD}@pg:5432/${POSTGRES_DB}
 
     ports:
       - "80:${PORT}"
