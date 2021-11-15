@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-=======
 FROM node:16
 
-WORKDIR /usr/api
+WORKDIR /usr/src/index.js
 
 COPY package.json ./
 
@@ -13,4 +11,4 @@ EXPOSE 3000
 COPY . .
 
 CMD npm test
->>>>>>> feature-docker
+
