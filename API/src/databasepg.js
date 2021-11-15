@@ -10,3 +10,9 @@ client.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
 });
+
+client.query("SELECT * from users",(err,res)=>{
+  console.log(err,res);
+  client.end();
+});
+
