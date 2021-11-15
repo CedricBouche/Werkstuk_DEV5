@@ -2,12 +2,6 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-const pg = require('knex')({
-  client: 'pg',
-  connection: 'postgres://postgres:admin@localhost:5432/werkstukDev5',
-  searchPath: ['knex', 'public'],
-});
-
 /**
  * [GET] /
  * @returns {string} "Docker is working"
