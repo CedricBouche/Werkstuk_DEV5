@@ -1,18 +1,29 @@
-version: "3.9"
+version: '3.9'
+
 services:
-  api:
-    build: ./API
-    command: npm run dev
-    volumes:
-      - ./API/src:/usr/api/src
-    ports:
-      - "3000:3000"
-    depends_on:
-      - postgres
-    environment:
-      DATABASE_URL: postgres://todoapp@postgres/todos
-  postgres:
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_DB: users
+    postgresql_database:
+        image: postgres:latest
+        environment:
+            - POSTGRES_USER=admin
+            - POSTGRES_PASSWORD=admin123
+            - POSTGRES_DB=productDb
+        ports: 
+            - "5832:5832"
+        restart: always
+        volumes: 
+            - database-data:/var/lib/postgresql/data/
+
+    pgadmin:
+        image: dpage/pgadmin4
+        environment: 
+            - PGADMIN_DEFAULT_EMAIL=cedric.bouche@student.ehb.be
+            - PGADMIN_DEFAULT_PASSWORD=admin
+        ports:
+            - '5050:80'
+        restart: always
+        volumes: 
+            - pgadmin:/root/.pgadmin
+volumes:
+    database-data:
+    pgadmin:
+
