@@ -6,13 +6,13 @@ const client = new Client({
   password: 'admin',
   port: 5433,
 })
-client.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
 
-client.query("SELECT * from users",(err,res)=>{
-  console.log(err,res);
-  client.end();
-});
+
+client.connect()
+.then(()=> console.log("Connected!"))
+.then(()=> client.query("SELECT * from users")
+.then(results => console.table(results.rows))
+.catch(e => console.log(e))
+.finally(()=>client.end())
+)
 
