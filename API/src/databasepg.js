@@ -7,12 +7,14 @@ const client = new Client({
   port: 5433,
 })
 
+module.exports = client;
 
-client.connect()
-.then(()=> console.log("Connected!"))
-.then(()=> client.query("SELECT * from users")
-.then(results => console.table(results.rows))
-.catch(e => console.log(e))
-.finally(()=>client.end())
-)
+
+// client.connect()
+// .then(()=> console.log("Connected!"))
+// .then(()=> client.query("SELECT * from users")
+// .then(results => console.table(results.rows))
+// .catch(e => console.log(e))
+// .finally(()=>client.end())
+// )
 

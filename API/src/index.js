@@ -1,12 +1,9 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const client = require("./databasepg");
 
-const users = [{
-  name: "hello",
-  password: "password",
-  email: "hello@ehb.be"
-}];
+app.use(express.json())
 /**
  * [GET] /
  * checking if server is active
@@ -25,6 +22,19 @@ app.get('/', (req, res) => {
  app.get('/api/users',  (req, res) => {
   res.json(users);
 })
+
+app.post("/users",async(req,res)=>{
+  try{
+    const{name} = req.body;
+    const newUser = await client.query("INSERT INTO users (Name) VALUES($1) RETURNING *",
+    [name]
+    );
+
+    res.json(newUser);
+  }catch(err){
+    console.error(err.message);
+  }
+});
 
 /**
  * [DELETE] /user
