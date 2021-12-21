@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  api:
+    build: ./API
+    volumes:
+      - ./API/src:/usr/werkstuk/src
+
+    environment:
+      - PORT
+      - POSTGRES_CONNECTION=postgress://${POSTGRES_USER}:${POSTGRES_PASSWORD}@pg:5432/${POSTGRES_DB}
+
+    ports:
+      - "80:${PORT}"
+
+    depends_on:
+      - pg
+
+  pg:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+
+    ports:
+      - 5432:5432
