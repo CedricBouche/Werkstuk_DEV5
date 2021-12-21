@@ -1,5 +1,5 @@
 const supertest = require('supertest');
-const app = require('./server.test')
+const app = require("../src/index");
 
 
 const pg = require('knex')({
@@ -20,7 +20,7 @@ describe('testing postgres',() => {
       await request.post("/users")
       .send({name: 'test',verslaving:'testing'})
       .expect(200)
-      .then((response) => response.body.res)
+      .then((resp) => resp.body.res)
       .then((res) => {
         uuid = res[0].uuid
       }).catch((e) => {
@@ -28,7 +28,7 @@ describe('testing postgres',() => {
       })
 
       await pg.raw('Name');
-      pg.select('*').table("posts").where({uuid}).then((rows) => {
+      pg.select('*').table("users").where({uuid}).then((rows) => {
         console.log(rows)
         expect(rows).toBeInstanceOf(Array);
         expect(rows.length).toBe(1);
