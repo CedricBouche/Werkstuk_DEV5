@@ -1,4 +1,11 @@
-# Werkstuk_DEV5
+## Werkstuk_DEV5
+
+# How to start
+
+1) run in the terminal npm run start
+2) Type the correct path in the url
+
+# Endpoints
 
 (C) De gebruiker kan een persoon aanmaken 
 => [POST] localhost:3000/persons
