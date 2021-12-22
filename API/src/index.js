@@ -23,7 +23,14 @@ app.get('/', (req, res) => {
   res.json(users);
 })
 
+
+/**
+ * [POST] /api/users
+ * make a new user to the database
+ * @returns {newUser} "a new user"
+ */
 app.post("/users",async(req,res)=>{
+  res.sendStatus(200)
   try{
     const{name} = req.body;
     const newUser = await client.query("INSERT INTO users (Name) VALUES($1) RETURNING *",
@@ -35,6 +42,7 @@ app.post("/users",async(req,res)=>{
     console.error(err.message);
   }
 });
+
 
 /**
  * [DELETE] /user

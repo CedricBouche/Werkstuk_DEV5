@@ -11,14 +11,15 @@ const pg = require('knex')({
   port: 5433
 });
 
+
 const request = supertest(app);
 
 describe('testing postgres',() => {
-  test ('full circle',async (done)=>{
+  test ('post a new user' ,async (done)=>{
     try {
       let uuid = null;
       await request.post("/users")
-      .send({name: 'test',verslaving:'testing'})
+      .send({name: 'test'})
       .expect(200)
       .then((resp) => resp.body.res)
       .then((res) => {
@@ -27,8 +28,8 @@ describe('testing postgres',() => {
         console.log(e)
       })
 
-      await pg.raw('Name');
-      pg.select('*').table("users").where({uuid}).then((rows) => {
+      await pg.raw('name');
+      pg.select('*').table("person").where({uuid}).then((rows) => {
         console.log(rows)
         expect(rows).toBeInstanceOf(Array);
         expect(rows.length).toBe(1);
