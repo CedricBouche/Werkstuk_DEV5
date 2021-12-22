@@ -19,7 +19,7 @@
 (D) De gebruiker kan de persoon verwijderen uit de database
 => [DELETE] localhost:3000/persons/:id
 
-## followed a tutorial => https://blog.logrocket.com/nodejs-expressjs-postgresql-crud-rest-api-example/
+### followed a tutorial => https://blog.logrocket.com/nodejs-expressjs-postgresql-crud-rest-api-example/
 
 
 
