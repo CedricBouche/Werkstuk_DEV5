@@ -1,5 +1,6 @@
 const supertest = require('supertest');
-const app = require("../src/index");
+const app = require("../src/server.js");
+const request = supertest(app)
 
 
 const pg = require('knex')({
@@ -11,18 +12,31 @@ const pg = require('knex')({
   port: 5433
 });
 
-const request = supertest(app);
-
-
-describe('Post Endpoints', () => {
-  it('should create a new user', async () => {
-    const res = await request(app)
-      .post('/api/user')
-      .send({
-        name: 'test',
+describe('testing postgres', () => {
+  test('full circle', async (done) =>{
+    try {
+      let uuid = null;
+      await request.post('/persons')
+        .send({ name: 'test', verslaving: 'testing' })
+        .expect(200)
+        .then((resp) => resp.body.res)
+        .then((res) => {
+          uuid = res[0].uuid
+        }).catch((e) => {
+          console.log(e)
+        })
+      await pg.raw('BEGIN');
+      pg.select('*').table("persons").where({uuid}).then((rows) => {
+        console.log(rows)
+        expect(rows).toBeInstanceOf(Array);
+        expect(rows.length).toBe(1);
       })
-    expect(res.statusCode).toEqual(201)
-    expect(res.body).toHaveProperty('test')
+      .then(() => {
+        done();
+      })
+    } catch(err) {
+      throw err;
+    } finally {
+    }
   })
 })
-
