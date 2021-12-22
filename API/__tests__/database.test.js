@@ -13,33 +13,16 @@ const pg = require('knex')({
 
 const request = supertest(app);
 
-describe('testing postgres',() => {
-  test ('full circle',async (done)=>{
-    try {
-      let uuid = null;
-      await request.post("/users")
-      .send({name: 'test',verslaving:'testing'})
-      .expect(200)
-      .then((resp) => resp.body.res)
-      .then((res) => {
-        uuid = res[0].uuid
-      }).catch((e) => {
-        console.log(e)
-      })
 
-      await pg.raw('Name');
-      pg.select('*').table("users").where({uuid}).then((rows) => {
-        console.log(rows)
-        expect(rows).toBeInstanceOf(Array);
-        expect(rows.length).toBe(1);
+describe('Post Endpoints', () => {
+  it('should create a new user', async () => {
+    const res = await request(app)
+      .post('/api/user')
+      .send({
+        name: 'test',
       })
-      .then(()=>{
-        done();
-      })
-    } catch(err){
-      throw err;
-    } finally {
-    }
+    expect(res.statusCode).toEqual(201)
+    expect(res.body).toHaveProperty('test')
   })
-  
-});
+})
+

@@ -4,6 +4,9 @@ const port = 3000
 const client = require("./databasepg");
 
 app.use(express.json())
+
+
+
 /**
  * [GET] /
  * checking if server is active
@@ -13,20 +16,31 @@ app.get('/', (req, res) => {
   res.send('Docker is working!')
 })
 
-
 /**
  * [GET] /api/users
  * show a list of all the users from the database
  * @returns {object} "the object users"
  */
- app.get('/api/users',  (req, res) => {
-  res.json(users);
-})
+ app.get('/api/users', async  (req, res) => {
+  try{
+    const users = await client.query("SELECT * FROM person");
+    res.json(users.rows)
+  }catch (err){
+    console.error(err.message)
+  }
+});
 
+
+/**
+ * [POST] /api/users
+ * make a new user to the database
+ * @returns {newUser} "a new user"
+ */
 app.post("/users",async(req,res)=>{
+  res.sendStatus(200)
   try{
     const{name} = req.body;
-    const newUser = await client.query("INSERT INTO users (Name) VALUES($1) RETURNING *",
+    const newUser = await client.query("INSERT INTO person (name) VALUES($1) RETURNING *",
     [name]
     );
 
@@ -35,6 +49,7 @@ app.post("/users",async(req,res)=>{
     console.error(err.message);
   }
 });
+
 
 /**
  * [DELETE] /user
