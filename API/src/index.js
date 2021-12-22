@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
  * @returns {object} "the object users"
  */
  app.get('/api/users',  (req, res) => {
-  res.json(users);
+  res.json(person);
 })
 
 
@@ -33,7 +33,7 @@ app.post("/users",async(req,res)=>{
   res.sendStatus(200)
   try{
     const{name} = req.body;
-    const newUser = await client.query("INSERT INTO users (Name) VALUES($1) RETURNING *",
+    const newUser = await client.query("INSERT INTO person (name) VALUES($1) RETURNING *",
     [name]
     );
 
